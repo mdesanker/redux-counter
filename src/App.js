@@ -1,9 +1,12 @@
+import { useSelector } from "react-redux";
 import styled from "styled-components";
 
 const App = () => {
+  const counter = useSelector((state) => state.counter.counter);
+
   return (
     <Wrapper>
-      <h1>Counter</h1>
+      <h1>{counter}</h1>
       <div>
         <button>+ 1</button>
         <button>- 1</button>
