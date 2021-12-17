@@ -16,7 +16,8 @@ const App = () => {
     dispatch(decrement());
   };
 
-  const increaseHandler = () => {
+  const increaseHandler = (e) => {
+    e.preventDefault();
     const amount = document.querySelector("#amount");
 
     dispatch(increase(Number(amount.value)));
@@ -34,11 +35,11 @@ const App = () => {
         <button onClick={incrementHandler}>+ 1</button>
         <button onClick={decrementHandler}>- 1</button>
       </div>
-      <div>
+      <form onSubmit={increaseHandler}>
         <label htmlFor="amount">Enter amount:</label>
         <input type="text" name="amount" id="amount" />
-        <button onClick={increaseHandler}>+ Amount</button>
-      </div>
+        <button>+ Amount</button>
+      </form>
       <button onClick={clearHandler}>Clear</button>
     </Wrapper>
   );
