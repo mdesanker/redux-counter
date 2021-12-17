@@ -1,15 +1,27 @@
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
+import { counterActions, increment } from "./store/counterSlice";
 
 const App = () => {
+  // Read counter value from store
   const counter = useSelector((state) => state.counter.counter);
+  const dispatch = useDispatch();
+
+  // Functions
+  const incrementHandler = () => {
+    dispatch(increment());
+  };
+
+  const decrementHandler = () => {
+    dispatch(counterActions.decrement());
+  };
 
   return (
     <Wrapper>
       <h1>{counter}</h1>
       <div>
-        <button>+ 1</button>
-        <button>- 1</button>
+        <button onClick={incrementHandler}>+ 1</button>
+        <button onClick={decrementHandler}>- 1</button>
       </div>
       <form action="">
         <label htmlFor="amount">Enter amount:</label>
