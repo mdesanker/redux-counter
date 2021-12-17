@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
-import { counterActions, increment } from "./store/counterSlice";
+import { increment, decrement, increase } from "./store/counterSlice";
 
 const App = () => {
   // Read counter value from store
@@ -13,7 +13,14 @@ const App = () => {
   };
 
   const decrementHandler = () => {
-    dispatch(counterActions.decrement());
+    dispatch(decrement());
+  };
+
+  const increaseHandler = () => {
+    const amount = document.querySelector("#amount");
+
+    dispatch(increase(Number(amount.value)));
+    amount.value = "";
   };
 
   return (
@@ -23,11 +30,11 @@ const App = () => {
         <button onClick={incrementHandler}>+ 1</button>
         <button onClick={decrementHandler}>- 1</button>
       </div>
-      <form action="">
+      <div>
         <label htmlFor="amount">Enter amount:</label>
         <input type="text" name="amount" id="amount" />
-        <button>+ Amount</button>
-      </form>
+        <button onClick={increaseHandler}>+ Amount</button>
+      </div>
     </Wrapper>
   );
 };
